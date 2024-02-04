@@ -1,0 +1,12 @@
+language: en
+
+pipeline:
+
+policies:
+  - name: MemoizationPolicy
+  - name: TEDPolicy
+    max_history: 4
+    epochs: 500
+    constrain_similarities: true
+    model_confidence: linear_norm
+  - name: RulePolicy

@@ -1,0 +1,612 @@
+version: "2.0"
+
+stories:
+- story: happy path for search provider
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_search_provider
+  - action: utter_ask_category_type
+  - intent: Category
+    entities:
+    - category_type: Beauty
+  - slot_was_set:
+    - category_type: Beauty
+  - action: action_search_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: B01EPOQOTM
+        Rank:
+        - '41696'
+        Sub_Category:
+        - Beauty
+        - Personal
+        - Care
+        brand: Rinastore
+        description: '<b>Specifications</b>: <br>Material: 600D Waterproof Oxford Cloth <br>Item Weight: 4.58oz'
+        image:
+        - https://images-na.ssl-images-amazon.com/images/I/51XJBfNkS6L._SS40_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/51deNd0ODFL._SS40_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/51u8LWtRy3L._SS40_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/417leCMe5sL._SS40_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/41p2gu4zqrL._SS40_.jpg
+        price: 9.99
+        rank: 41,696 in Beauty & Personal Care (
+        rating: 3.81481
+        title: Piano Keys Music Waterproof Oxford Cloth Handbag Shoulder Tote Shopping Bag Gift (Black-Large-1)
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - intent: address
+  - action: action_add_address
+  - slot_was_set:
+    - address: F 102 Poonam Orchid
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type 
+  - intent: affirm
+  - action: action_order_placed
+
+
+- story: happy path for recommendend Products
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_selected_recommend
+  - action: action_recommend_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: B01E4Q9MJA
+        Rank:
+        - '439513'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - Jewelry
+        brand: Neon Eaters
+        description: "FUNKY & FUN NARWHAL GIFT SOCKS: Neon Eaters has been a leader in funky narwhals socks since 2012. Their fun take on blue sock exchange socks make white Q socks a thing of the past. Available in kids, women's and men's sizes why not get some fun & happy socks for your family & friends. UNIQUE STYLE & DESIGN NOVELTY SOCKS: Say goodbye to boring birthday gift socks. These unique blue narwhals socks by Neon Eaters will make you forget you ever wore plain white athletic sport socks and say sock it to me over and over. The unisex design makes these funky socks fun for teen boys and girls, and young at heart freaker Men & Women. CRAZY SOCKS MAKE A GREAT CHRISTMAS GIFT: Stop giving lame stocking stuff gifts when you can make a real impression at a sock exchange with something as unique and these crazy cool narwhal socks. Give a kids birthday gift socks they will never forget and will use all the time. Take a stance against boring christmas exchange socks. QUALITY, COMFORT & SOFT ORGANIC COTTON: Say goodbye to pesky seams and fabrics that are not designed for your feet. The blue dress sock style construction, smooth toe seam, reinforced heel, elastic collar and organic cotton make these some of the most comfortable Q socks you will ever own. A true socksmith creation for the living royal in your freaker family SIZE AND SPECIFICATIONS: This includes (1) pair of blue socks. Neon Eaters narwall socks are sized to comfortably fit the following: Q Small will fit kids shoe sizes 9-13, Medium will fit Youth shoe sizes 1-5, Large will fit women's US shoe size 6-10 and Mens US shoe size 5-9 and Extra Large will will fit women's US shoe size 10-13 and Mens US shoe size 9-12."
+        image:
+        - "https://images-na.ssl-images-amazon.com/images/I/41MvnzO2HjL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/511FArvVhBL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/41OXYkGEByL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/415c7NF68NL._SX38_SY50_CR,0,0,38,50_.jpg"
+        price: 10.99
+        rank: "439,513 in Clothing, Shoes & Jewelry ("
+        rating: 4.96429
+        title: "Narwhal Socks - Novelty Funky Fun Narwals Kids Girls Women Men Boys Gift"
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - intent: address
+  - action: action_add_address
+  - slot_was_set:
+    - address: F 702 Poonam nagar
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type
+  - intent: affirm
+  - action: action_order_placed
+
+
+- story: User Jumps from Recommend Products to Search Provider
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_selected_recommend
+  - action: action_recommend_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: B01E4Q9MJA
+        Rank:
+        - '439513'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - Jewelry
+        brand: Neon Eaters
+        description: "FUNKY & FUN NARWHAL GIFT SOCKS: Neon Eaters has been a leader in funky narwhals socks since 2012. Their fun take on blue sock exchange socks make white Q socks a thing of the past. Available in kids, women's and men's sizes why not get some fun & happy socks for your family & friends. UNIQUE STYLE & DESIGN NOVELTY SOCKS: Say goodbye to boring birthday gift socks. These unique blue narwhals socks by Neon Eaters will make you forget you ever wore plain white athletic sport socks and say sock it to me over and over. The unisex design makes these funky socks fun for teen boys and girls, and young at heart freaker Men & Women. CRAZY SOCKS MAKE A GREAT CHRISTMAS GIFT: Stop giving lame stocking stuff gifts when you can make a real impression at a sock exchange with something as unique and these crazy cool narwhal socks. Give a kids birthday gift socks they will never forget and will use all the time. Take a stance against boring christmas exchange socks. QUALITY, COMFORT & SOFT ORGANIC COTTON: Say goodbye to pesky seams and fabrics that are not designed for your feet. The blue dress sock style construction, smooth toe seam, reinforced heel, elastic collar and organic cotton make these some of the most comfortable Q socks you will ever own. A true socksmith creation for the living royal in your freaker family SIZE AND SPECIFICATIONS: This includes (1) pair of blue socks. Neon Eaters narwall socks are sized to comfortably fit the following: Q Small will fit kids shoe sizes 9-13, Medium will fit Youth shoe sizes 1-5, Large will fit women's US shoe size 6-10 and Mens US shoe size 5-9 and Extra Large will will fit women's US shoe size 10-13 and Mens US shoe size 9-12."
+        image:
+        - "https://images-na.ssl-images-amazon.com/images/I/41MvnzO2HjL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/511FArvVhBL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/41OXYkGEByL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/415c7NF68NL._SX38_SY50_CR,0,0,38,50_.jpg"
+        price: 10.99
+        rank: 439,513 in Clothing, Shoes & Jewelry (
+        rating: 4.96429
+        title: Narwhal Socks - Novelty Funky Fun Narwals Kids Girls Women Men Boys Gift
+  - intent: out_of_scope
+  - action: utter_ask_affirmation
+  - intent: research
+  - action: utter_select_options
+  - intent: option_search_provider
+  - action: utter_ask_category_type
+  - intent: Category
+    entities:
+    - category_type: Clothing
+  - slot_was_set:
+    - category_type: Clothing
+  - action: action_search_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: '9654263246'
+        Rank:
+        - '3725957'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - amp
+        - Jewelry
+        brand: Roar Carbon
+        description: When you pull out your extra large carbon fiber money clip it gives you that status as you know whats new and has people asking what it is and where did you get it? Each carbon fiber money clip is made from the highest quality Carbon Fiber in America. Each money clip is infused with an epoxy resin giving you a strong and light weight money clip. This gives you the ability to walk through airport detectors with out having to put your money into a plastic tray. Each money clip comes with a 5 year warranty against de-lamination. Carbon fiber money clips very similar to these sell for up to 4 times what you can buy it for here. The reason for why the price is so exceptional is do the number on money clips that are manufactured at a time.
+        image:
+        - https://images-na.ssl-images-amazon.com/images/I/41U3SgbuxwL._SR38,50_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/41UgL%2B9H5WL._SR38,50_.jpg
+        price: 14.99
+        rank: 3,725,957 in Clothing, Shoes &amp; Jewelry (
+        rating: 4.0
+        title: X. L. Carbon Fiber Money Clip, made in the USA
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - intent: address
+  - action: action_add_address
+  - slot_was_set:
+    - address: F 104 Virat Nagar
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Paytm
+  - slot_was_set:
+    - payment_type: Paytm
+  - action: utter_confirm_payment_type 
+  - intent: affirm
+  - action: action_order_placed
+
+
+- story: User interrupt in Recommend Products but continues
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_selected_recommend
+  - action: action_recommend_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: B01E4Q9MJA
+        Rank:
+        - '439513'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - Jewelry
+        brand: Neon Eaters
+        description: "FUNKY & FUN NARWHAL GIFT SOCKS: Neon Eaters has been a leader in funky narwhals socks since 2012. Their fun take on blue sock exchange socks make white Q socks a thing of the past. Available in kids, women's and men's sizes why not get some fun & happy socks for your family & friends. UNIQUE STYLE & DESIGN NOVELTY SOCKS: Say goodbye to boring birthday gift socks. These unique blue narwhals socks by Neon Eaters will make you forget you ever wore plain white athletic sport socks and say sock it to me over and over. The unisex design makes these funky socks fun for teen boys and girls, and young at heart freaker Men & Women. CRAZY SOCKS MAKE A GREAT CHRISTMAS GIFT: Stop giving lame stocking stuff gifts when you can make a real impression at a sock exchange with something as unique and these crazy cool narwhal socks. Give a kids birthday gift socks they will never forget and will use all the time. Take a stance against boring christmas exchange socks. QUALITY, COMFORT & SOFT ORGANIC COTTON: Say goodbye to pesky seams and fabrics that are not designed for your feet. The blue dress sock style construction, smooth toe seam, reinforced heel, elastic collar and organic cotton make these some of the most comfortable Q socks you will ever own. A true socksmith creation for the living royal in your freaker family SIZE AND SPECIFICATIONS: This includes (1) pair of blue socks. Neon Eaters narwall socks are sized to comfortably fit the following: Q Small will fit kids shoe sizes 9-13, Medium will fit Youth shoe sizes 1-5, Large will fit women's US shoe size 6-10 and Mens US shoe size 5-9 and Extra Large will will fit women's US shoe size 10-13 and Mens US shoe size 9-12."
+        image:
+        - "https://images-na.ssl-images-amazon.com/images/I/41MvnzO2HjL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/511FArvVhBL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/41OXYkGEByL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/415c7NF68NL._SX38_SY50_CR,0,0,38,50_.jpg"
+        price: 10.99
+        rank: 439,513 in Clothing, Shoes & Jewelry (
+        rating: 4.96429
+        title: Narwhal Socks - Novelty Funky Fun Narwals Kids Girls Women Men Boys Gift
+  - intent: out_of_scope
+  - action: utter_ask_affirmation
+  - intent: affirm
+  - action: action_recommend_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: B01E4Q9MJA
+        Rank:
+        - '439513'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - Jewelry
+        brand: Neon Eaters
+        description: "FUNKY & FUN NARWHAL GIFT SOCKS: Neon Eaters has been a leader in funky narwhals socks since 2012. Their fun take on blue sock exchange socks make white Q socks a thing of the past. Available in kids, women's and men's sizes why not get some fun & happy socks for your family & friends. UNIQUE STYLE & DESIGN NOVELTY SOCKS: Say goodbye to boring birthday gift socks. These unique blue narwhals socks by Neon Eaters will make you forget you ever wore plain white athletic sport socks and say sock it to me over and over. The unisex design makes these funky socks fun for teen boys and girls, and young at heart freaker Men & Women. CRAZY SOCKS MAKE A GREAT CHRISTMAS GIFT: Stop giving lame stocking stuff gifts when you can make a real impression at a sock exchange with something as unique and these crazy cool narwhal socks. Give a kids birthday gift socks they will never forget and will use all the time. Take a stance against boring christmas exchange socks. QUALITY, COMFORT & SOFT ORGANIC COTTON: Say goodbye to pesky seams and fabrics that are not designed for your feet. The blue dress sock style construction, smooth toe seam, reinforced heel, elastic collar and organic cotton make these some of the most comfortable Q socks you will ever own. A true socksmith creation for the living royal in your freaker family SIZE AND SPECIFICATIONS: This includes (1) pair of blue socks. Neon Eaters narwall socks are sized to comfortably fit the following: Q Small will fit kids shoe sizes 9-13, Medium will fit Youth shoe sizes 1-5, Large will fit women's US shoe size 6-10 and Mens US shoe size 5-9 and Extra Large will will fit women's US shoe size 10-13 and Mens US shoe size 9-12."
+        image:
+        - "https://images-na.ssl-images-amazon.com/images/I/41MvnzO2HjL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/511FArvVhBL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/41OXYkGEByL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/415c7NF68NL._SX38_SY50_CR,0,0,38,50_.jpg"
+        price: 10.99
+        rank: 439,513 in Clothing, Shoes & Jewelry (
+        rating: 4.96429
+        title: Narwhal Socks - Novelty Funky Fun Narwals Kids Girls Women Men Boys Gift
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - intent: address
+  - action: action_add_address
+  - slot_was_set:
+    - address: F 104 Virat Nagar
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Paytm
+  - slot_was_set:
+    - payment_type: Paytm
+  - action: utter_confirm_payment_type 
+  - intent: affirm
+  - action: action_order_placed
+
+
+- story: When User jumps from search Provider to Recommend Products
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_search_provider
+  - action: utter_ask_category_type
+  - intent: Category
+    entities:
+    - category_type: Clothing
+  - slot_was_set:
+    - category_type: Clothing
+  - action: action_search_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: '9654263246'
+        Rank:
+        - '3725957'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - amp
+        - Jewelry
+        brand: Roar Carbon
+        description: When you pull out your extra large carbon fiber money clip it gives you that status as you know whats new and has people asking what it is and where did you get it? Each carbon fiber money clip is made from the highest quality Carbon Fiber in America. Each money clip is infused with an epoxy resin giving you a strong and light weight money clip. This gives you the ability to walk through airport detectors with out having to put your money into a plastic tray. Each money clip comes with a 5 year warranty against de-lamination. Carbon fiber money clips very similar to these sell for up to 4 times what you can buy it for here. The reason for why the price is so exceptional is do the number on money clips that are manufactured at a time.
+        image:
+        - https://images-na.ssl-images-amazon.com/images/I/41U3SgbuxwL._SR38,50_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/41UgL%2B9H5WL._SR38,50_.jpg
+        price: 14.99
+        rank: 3,725,957 in Clothing, Shoes &amp; Jewelry (
+        rating: 4.0
+        title: X. L. Carbon Fiber Money Clip, made in the USA
+  - intent: out_of_scope
+  - action: utter_ask_affirmation
+  - intent: research
+  - action: utter_select_options
+  - intent: option_selected_recommend
+  - action: action_recommend_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: B01E4Q9MJA
+        Rank:
+        - '439513'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - Jewelry
+        brand: Neon Eaters
+        description: "FUNKY & FUN NARWHAL GIFT SOCKS: Neon Eaters has been a leader in funky narwhals socks since 2012. Their fun take on blue sock exchange socks make white Q socks a thing of the past. Available in kids, women's and men's sizes why not get some fun & happy socks for your family & friends. UNIQUE STYLE & DESIGN NOVELTY SOCKS: Say goodbye to boring birthday gift socks. These unique blue narwhals socks by Neon Eaters will make you forget you ever wore plain white athletic sport socks and say sock it to me over and over. The unisex design makes these funky socks fun for teen boys and girls, and young at heart freaker Men & Women. CRAZY SOCKS MAKE A GREAT CHRISTMAS GIFT: Stop giving lame stocking stuff gifts when you can make a real impression at a sock exchange with something as unique and these crazy cool narwhal socks. Give a kids birthday gift socks they will never forget and will use all the time. Take a stance against boring christmas exchange socks. QUALITY, COMFORT & SOFT ORGANIC COTTON: Say goodbye to pesky seams and fabrics that are not designed for your feet. The blue dress sock style construction, smooth toe seam, reinforced heel, elastic collar and organic cotton make these some of the most comfortable Q socks you will ever own. A true socksmith creation for the living royal in your freaker family SIZE AND SPECIFICATIONS: This includes (1) pair of blue socks. Neon Eaters narwall socks are sized to comfortably fit the following: Q Small will fit kids shoe sizes 9-13, Medium will fit Youth shoe sizes 1-5, Large will fit women's US shoe size 6-10 and Mens US shoe size 5-9 and Extra Large will will fit women's US shoe size 10-13 and Mens US shoe size 9-12."
+        image:
+        - "https://images-na.ssl-images-amazon.com/images/I/41MvnzO2HjL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/511FArvVhBL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/41OXYkGEByL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/415c7NF68NL._SX38_SY50_CR,0,0,38,50_.jpg"
+        price: 10.99
+        rank: 439,513 in Clothing, Shoes & Jewelry (
+        rating: 4.96429
+        title: Narwhal Socks - Novelty Funky Fun Narwals Kids Girls Women Men Boys Gift
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - intent: address
+  - action: action_add_address
+  - slot_was_set:
+    - address: F 505 Nagar
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Google Pay
+  - slot_was_set:
+    - payment_type: Google Pay
+  - action: utter_confirm_payment_type 
+  - intent: affirm
+  - action: action_order_placed
+
+
+- story: When User interrupt in search Provider but continues
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_search_provider
+  - action: utter_ask_category_type
+  - intent: Category
+    entities:
+    - category_type: Clothing
+  - slot_was_set:
+    - category_type: Clothing
+  - action: action_search_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: '9654263246'
+        Rank:
+        - '3725957'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - amp
+        - Jewelry
+        brand: Roar Carbon
+        description: When you pull out your extra large carbon fiber money clip it gives you that status as you know whats new and has people asking what it is and where did you get it? Each carbon fiber money clip is made from the highest quality Carbon Fiber in America. Each money clip is infused with an epoxy resin giving you a strong and light weight money clip. This gives you the ability to walk through airport detectors with out having to put your money into a plastic tray. Each money clip comes with a 5 year warranty against de-lamination. Carbon fiber money clips very similar to these sell for up to 4 times what you can buy it for here. The reason for why the price is so exceptional is do the number on money clips that are manufactured at a time.
+        image:
+        - https://images-na.ssl-images-amazon.com/images/I/41U3SgbuxwL._SR38,50_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/41UgL%2B9H5WL._SR38,50_.jpg
+        price: 14.99
+        rank: 3,725,957 in Clothing, Shoes &amp; Jewelry (
+        rating: 4.0
+        title: X. L. Carbon Fiber Money Clip, made in the USA
+  - intent: out_of_scope
+  - action: utter_ask_affirmation
+  - intent: affirm
+  - action: action_search_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: '9654263246'
+        Rank:
+        - '3725957'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - amp
+        - Jewelry
+        brand: Roar Carbon
+        description: When you pull out your extra large carbon fiber money clip it gives you that status as you know whats new and has people asking what it is and where did you get it? Each carbon fiber money clip is made from the highest quality Carbon Fiber in America. Each money clip is infused with an epoxy resin giving you a strong and light weight money clip. This gives you the ability to walk through airport detectors with out having to put your money into a plastic tray. Each money clip comes with a 5 year warranty against de-lamination. Carbon fiber money clips very similar to these sell for up to 4 times what you can buy it for here. The reason for why the price is so exceptional is do the number on money clips that are manufactured at a time.
+        image:
+        - https://images-na.ssl-images-amazon.com/images/I/41U3SgbuxwL._SR38,50_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/41UgL%2B9H5WL._SR38,50_.jpg
+        price: 14.99
+        rank: 3,725,957 in Clothing, Shoes &amp; Jewelry (
+        rating: 4.0
+        title: X. L. Carbon Fiber Money Clip, made in the USA
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - intent: address
+  - action: action_add_address
+  - slot_was_set:
+    - address: F 505 Nagar
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Google Pay
+  - slot_was_set:
+    - payment_type: Google Pay
+  - action: utter_confirm_payment_type 
+  - intent: affirm
+  - action: action_order_placed
+
+
+- story: When User deny to buy the selected product 
+  steps:
+  - intent: deny
+  - action: utter_ask_affirmation
+  - intent: research 
+  - action: utter_select_options
+
+
+- story: When User deny to buy the selected product but continues again
+  steps:
+  - intent: deny
+  - action: utter_ask_affirmation
+  - intent: affirm
+  - action: action_address_lookup
+
+- story: Address was found in the user database chatflow is search provider
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_search_provider
+  - action: utter_ask_category_type
+  - intent: Category
+    entities:
+    - category_type: Clothing
+  - slot_was_set:
+    - category_type: Clothing
+  - action: action_search_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: '9654263246'
+        Rank:
+        - '3725957'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - amp
+        - Jewelry
+        brand: Roar Carbon
+        description: When you pull out your extra large carbon fiber money clip it gives you that status as you know whats new and has people asking what it is and where did you get it? Each carbon fiber money clip is made from the highest quality Carbon Fiber in America. Each money clip is infused with an epoxy resin giving you a strong and light weight money clip. This gives you the ability to walk through airport detectors with out having to put your money into a plastic tray. Each money clip comes with a 5 year warranty against de-lamination. Carbon fiber money clips very similar to these sell for up to 4 times what you can buy it for here. The reason for why the price is so exceptional is do the number on money clips that are manufactured at a time.
+        image:
+        - https://images-na.ssl-images-amazon.com/images/I/41U3SgbuxwL._SR38,50_.jpg
+        - https://images-na.ssl-images-amazon.com/images/I/41UgL%2B9H5WL._SR38,50_.jpg
+        price: 14.99
+        rank: 3,725,957 in Clothing, Shoes &amp; Jewelry (
+        rating: 4.0
+        title: X. L. Carbon Fiber Money Clip, made in the USA
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - slot_was_set:
+    - address: 'F 702 Poonam Orchid '
+  - intent: address_found
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type
+  - intent: affirm
+  - action: action_order_placed
+
+- story: address was found in user database chat flow is recommend products
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: option_selected_recommend
+  - action: action_recommend_products
+  - slot_was_set:
+    - products_list:
+      - ProdID: B01E4Q9MJA
+        Rank:
+        - '439513'
+        Sub_Category:
+        - Clothing
+        - Shoes
+        - Jewelry
+        brand: Neon Eaters
+        description: "FUNKY & FUN NARWHAL GIFT SOCKS: Neon Eaters has been a leader in funky narwhals socks since 2012. Their fun take on blue sock exchange socks make white Q socks a thing of the past. Available in kids, women's and men's sizes why not get some fun & happy socks for your family & friends. UNIQUE STYLE & DESIGN NOVELTY SOCKS: Say goodbye to boring birthday gift socks. These unique blue narwhals socks by Neon Eaters will make you forget you ever wore plain white athletic sport socks and say sock it to me over and over. The unisex design makes these funky socks fun for teen boys and girls, and young at heart freaker Men & Women. CRAZY SOCKS MAKE A GREAT CHRISTMAS GIFT: Stop giving lame stocking stuff gifts when you can make a real impression at a sock exchange with something as unique and these crazy cool narwhal socks. Give a kids birthday gift socks they will never forget and will use all the time. Take a stance against boring christmas exchange socks. QUALITY, COMFORT & SOFT ORGANIC COTTON: Say goodbye to pesky seams and fabrics that are not designed for your feet. The blue dress sock style construction, smooth toe seam, reinforced heel, elastic collar and organic cotton make these some of the most comfortable Q socks you will ever own. A true socksmith creation for the living royal in your freaker family SIZE AND SPECIFICATIONS: This includes (1) pair of blue socks. Neon Eaters narwall socks are sized to comfortably fit the following: Q Small will fit kids shoe sizes 9-13, Medium will fit Youth shoe sizes 1-5, Large will fit women's US shoe size 6-10 and Mens US shoe size 5-9 and Extra Large will will fit women's US shoe size 10-13 and Mens US shoe size 9-12."
+        image:
+        - "https://images-na.ssl-images-amazon.com/images/I/41MvnzO2HjL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/511FArvVhBL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/41OXYkGEByL._SR38,50_.jpg"
+        - "https://images-na.ssl-images-amazon.com/images/I/415c7NF68NL._SX38_SY50_CR,0,0,38,50_.jpg"
+        price: 10.99
+        rank: "439,513 in Clothing, Shoes & Jewelry ("
+        rating: 4.96429
+        title: "Narwhal Socks - Novelty Funky Fun Narwals Kids Girls Women Men Boys Gift"
+  - intent: option_selection
+    entities:
+    - option_select: '1'
+  - slot_was_set:
+    - option_select: '1'
+  - action: utter_ask_place_order
+  - intent: affirm
+  - action: action_address_lookup
+  - slot_was_set:
+    - address: 'F 702 Poonam Orchid '
+  - intent: address_found
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type
+  - intent: affirm
+  - action: action_order_placed
+
+- story: When User deny and decide to research at the end
+  steps:
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type
+  - intent: deny
+  - action: utter_last_confirmation
+  - intent: research 
+  - action: utter_select_options
+
+- story: When User deny and decide to continue at the end of story
+  steps:
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type
+  - intent: deny
+  - action: utter_last_confirmation
+  - intent: affirm
+  - action: action_order_placed
+
+- story: When User deny and make changes in payment options
+  steps:
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type
+  - intent: deny
+  - action: utter_last_confirmation
+  - intent: payment_options
+  - slot_was_set:
+    - payment_type: null
+  - action: utter_ask_payment_options
+  - intent: payment_options
+    entities:
+    - payment_type: Cod
+  - slot_was_set:
+    - payment_type: Cod
+  - action: utter_confirm_payment_type
+  - intent: affirm
+  - action: action_order_placed
+
+- story: happy path for Support /email part
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: support
+  - action: utter_ask_support
+  - intent: email_us
+  - action: utter_email_ans
+
+- story: happy path for Support / contact part
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+  - intent: support
+  - action: utter_ask_support
+  - intent: contact_us
+  - action: utter_contact_ans
+  

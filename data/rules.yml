@@ -1,0 +1,23 @@
+version: "2.0"
+
+rules:
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Happy Welcome
+  steps:
+  - intent: greet
+  - action: utter_bot_info
+  - action: utter_select_options
+
+- rule: When ever user ask for support
+  steps:
+  - intent: support
+  - action: utter_ask_support
+
+- rule: Thank you
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye

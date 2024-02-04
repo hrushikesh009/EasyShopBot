@@ -1,0 +1,6 @@
+Firebasekey.json
+SmartEcommerceFirebasekey.json
+__pycache__/
+*.pyc
+.theia/
+*.dot

@@ -1,0 +1,129 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+intents:
+- payment_options
+- option_search_provider
+- option_selection
+- affirm
+- address_found
+- Category
+- greet
+- address
+- out_of_scope
+- option_selected_recommend
+- goodbye
+- deny
+- bot_challenge
+- thankyou
+- research
+- support
+- email_us
+- contact_us
+
+entities:
+- category_type
+- option_select
+- payment_type
+
+slots:
+  products_list:
+    type: list
+    influence_conversation: true
+  option_select:
+    type: text
+    influence_conversation: false
+  address:
+    type: text
+    influence_conversation: false
+  payment_type:
+    type: text
+    influence_conversation: false
+  category_type:
+    type: text
+    influence_conversation: false
+
+responses:
+  utter_bot_info:
+  - text: Hey there this is a bot!
+  utter_select_options:
+  - text: Here is the current function of our bot!;)
+    buttons:
+    - title: Recommend Products
+      payload: Recommend
+    - title: Search Products
+      payload: Search
+    - title: Support and Help
+      payload: Support
+  utter_email_ans:
+  - text: Please write a query on our email "Xyz@email.com" and we will revert you in 24 working hours;)!
+  utter_contact_ans:
+  - text: You can talk to our assistant using Contact details as 91+ XXXXXXXXXX which is available 24/7 for our customers;)
+  utter_ask_place_order:
+  - text: Would you like to place the order?
+  utter_ask_category_type:
+  - text: Which type of Category do you refer? ;)
+  utter_ask_payment_options:
+  - text: Please select the Payment Options! :)
+    buttons:
+    - title: Cod
+      payload: Cod
+    - title: Paytm
+      payload: Paytm
+    - title: Debit Card
+      payload: Debit Card
+    - title: Credit Card
+      payload: Credit Card
+    - title: Google Pay
+      payload: Google Pay
+  utter_ask_affirmation:
+  - text: Did you mean?
+    buttons:
+    - payload: /research
+      title: Do you want to research the products?
+    - payload: /affirm
+      title: Continue?
+  utter_last_confirmation:
+  - text: Did you mean?
+    buttons:
+    - payload: /payment_options
+      title: Do you want to change the Payment Options?
+    - payload: /research
+      title: Do you want to research the products?
+    - payload: /affirm
+      title: Continue?
+  utter_confirm_payment_type:
+  - text: 'Please Confirm your Payment option: {payment_type}'
+  utter_goodbye:
+  - text: See you tomorrow. Bye!
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_default:
+  - text: Sorry I didn't get that. Can you rephrase?
+  utter_ask_support:
+  - text: How can I help you !;)
+    buttons:
+    - payload: /email_us
+      title: Write a Query?
+    - payload: /contact_us
+      title: Contact Us?
+    
+actions:
+- action_add_address
+- action_address_lookup
+- action_order_placed
+- action_recommend_products
+- action_search_products
+- utter_ask_category_type
+- utter_ask_payment_options
+- utter_ask_place_order
+- utter_bot_info
+- utter_confirm_payment_type
+- utter_select_options
+- utter_ask_affirmation
+- utter_last_confirmation
+- utter_ask_support
+- utter_contact_ans
+- utter_email_ans

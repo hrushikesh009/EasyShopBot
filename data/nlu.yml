@@ -1,0 +1,196 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - hii
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - sure
+    - ok
+    - why not
+    - ok great
+    - yes I did
+    - yeah, great
+    - pretty good
+    - fine
+    - You bet
+    - I sure did
+    - more or less
+    - yeah
+    - yes
+    - y
+    - Yes
+
+- intent: deny
+  examples: |
+    - never
+    - I don't think so
+    - no way
+    - not really
+    - none
+    - absolutely not
+    - no thanks
+    - didn't do any
+    - no I didn't
+    - could have been better
+    - not great
+    - nope
+    - no
+
+- intent: thankyou
+  examples: |
+    - okay great thanks
+    - thank you
+    - sure thanks
+    - thanks bye
+    - thanks
+
+- intent: option_selected_recommend
+  examples: |
+    - recommend me products
+    - Recommend products
+    - Can you recommend me some products
+    - Recommend
+    - Recommend Some Products
+
+- intent: option_selection
+  examples: |
+    - [1](option_select)
+    - [2](option_select)
+    - [3](option_select)
+    - [4](option_select)
+    - [5](option_select)
+    
+- intent: research
+  examples: |
+    - research products again
+    - I want to research the products
+    - I would like to research the products
+    - research
+    - Research
+
+- intent: address
+  examples: |
+    - F 702 Poonam Orchid
+    - G 605 Yashwant Nagar
+    - A 708 Gandhi Nagar
+    - B 403 Vijay Nagar
+    - E 201 Global City
+    - D 302 Sheetal Nagar
+    - H 504 Sanskrit Nagar
+    - F 101 New Nagar
+    - B 509 rose Nagar
+    - A 203 Virat Nagar
+    - A 102 virat Nagar
+
+- intent: payment_options
+  examples: |
+    - [Cod](payment_type)
+    - [Debit Card](payment_type)
+    - [Credit Card](payment_type)
+    - [Paytm](payment_type)
+    - [Google Pay](payment_type)
+    
+- intent: option_search_provider
+  examples: |
+    - I could like to search a product
+    - Search a Product
+    - I opt for Search option
+    - Search a Product for me
+    - Search
+
+- intent: Category
+  examples: |
+    - [Electronics](category_type)
+    - [Mobile](category_type)
+    - [Clothing](category_type)
+    - [Sports](category_type)
+    - [Books](category_type)
+    - [TV](category_type)
+    - [Beauty](category_type)
+    
+- intent: out_of_scope
+  examples: |
+    - that's not what I want
+    - wait stop
+    - you're no help
+    - this is no help at all
+    - how old are you
+    - I want to order a pizza
+    - tell me the weather
+    - this isn't working
+    - I already told you that
+    - don't like that
+    - I don't want to tell you that
+    - none of your business
+    - that's not right
+    - stop asking
+    - nevermind
+    - I want to do something else
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: address_found
+  examples: |
+    - address was found
+    - we found the address
+    - address was took
+    - address was retrieved
+
+- intent: support
+  examples: |
+    - Support
+    - Help
+    - assist me with the details
+    - Customer Service
+
+- intent: contact_us
+  examples: |
+    - find me the contact detail
+    - how can i talk to your assistant
+    - Contact details
+    - Contact Us
+    
+- intent: email_us
+  examples: |
+    - I need to write query
+    - where can i find email address
+    - help me with your email address
+    - Email
